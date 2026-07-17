@@ -1,0 +1,30 @@
+# Python temporary files
+__pycache__/
+*.pyc
+
+# Python environments
+.venv/
+venv/
+
+# Passwords and private settings
+.env
+
+# Medical images
+*.dcm
+*.nii
+*.nii.gz
+
+# Large generated data
+data/
+datasets/
+checkpoints/
+runs/
+logs/
+cache/
+tmp/
+wandb/
+
+# Temporary model files
+*.ckpt
+*.pth
+*.pt
