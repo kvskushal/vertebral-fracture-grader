@@ -8,9 +8,7 @@ from typing import Final
 
 import numpy as np
 
-CONFIG_PATH: Final = (
-    Path(__file__).resolve().parents[1] / "configs" / "preprocessing.json"
-)
+CONFIG_PATH: Final = Path(__file__).resolve().parents[1] / "configs" / "preprocessing.json"
 
 with CONFIG_PATH.open("r", encoding="utf-8") as config_file:
     CONFIG: Final = json.load(config_file)
