@@ -426,3 +426,317 @@ the download instructions, license information, manifests, and code.
 
 
 
+
+
+
+
+\# Paper 3: Löffler Vertebral Segmentation and Fracture-Grading Dataset
+
+
+
+\## Citation
+
+
+
+Löffler, M. T., Sekuboyina, A., Jacob, A., Grau, A. L., Scharr, A.,
+
+El Husseini, M., Kallweit, M., Zimmer, C., Baum, T., and Kirschke, J. S.
+
+(2020). A Vertebral Segmentation Dataset with Fracture Grading.
+
+Radiology: Artificial Intelligence, 2(4), e190138.
+
+https://doi.org/10.1148/ryai.2020190138
+
+
+
+Full paper:
+
+https://pubs.rsna.org/doi/full/10.1148/ryai.2020190138
+
+
+
+Dataset:
+
+https://osf.io/nqjyw/
+
+
+
+\## Research question
+
+
+
+Can a public CT dataset provide accurate vertebral masks and fracture
+
+grades for training automated spine-analysis systems?
+
+
+
+\## Important vocabulary
+
+
+
+\- Annotation: Information added to an image by an expert.
+
+\- Fracture grade: A number describing fracture severity.
+
+\- Consensus: An answer on which multiple experts agree.
+
+\- Class imbalance: Some grades appear much more often than others.
+
+\- Data leakage: Test-patient information accidentally enters training data.
+
+\- Contrast material: A substance that makes structures more visible on CT.
+
+
+
+\## Dataset
+
+
+
+The dataset contains:
+
+
+
+\- 160 CT image series
+
+\- 141 patients
+
+\- 1,725 fully visible vertebrae
+
+\- 220 cervical vertebrae
+
+\- 884 thoracic vertebrae
+
+\- 621 lumbar vertebrae
+
+\- Vertebral segmentation masks
+
+\- Vertebral names and center coordinates
+
+\- Genant grades for thoracolumbar vertebrae
+
+\- Fracture-shape labels
+
+\- Foreign-material annotations
+
+\- Lumbar bone-mineral-density measurements
+
+
+
+The original split contains:
+
+
+
+\- Training: 80 image series and 862 vertebrae
+
+\- Validation: 40 image series and 434 vertebrae
+
+\- Test: 40 image series and 429 vertebrae
+
+
+
+All scans belonging to one patient were kept in the same split. This
+
+prevents patient-level data leakage.
+
+
+
+\## How the masks were created
+
+
+
+The researchers first used an automated system to find, label, and segment
+
+the vertebrae. Trained medical students corrected the computer-generated
+
+masks. Neuroradiologists then reviewed the corrections. Metal implants and
+
+bone cement were excluded from the vertebral bone masks.
+
+
+
+This human-machine method was faster than drawing every mask from the
+
+beginning while still including expert review.
+
+
+
+\## Fracture grading
+
+
+
+Two radiologists evaluated the thoracolumbar vertebrae together using the
+
+Genant standard.
+
+
+
+| Grade | Meaning | Height loss |
+
+|---|---|---:|
+
+| 0 | Normal | Less than 20% |
+
+| 1 | Mild | At least 20% but less than 25% |
+
+| 2 | Moderate | At least 25% but less than 40% |
+
+| 3 | Severe | At least 40% |
+
+
+
+They also recorded wedge, biconcave, and crush fracture shapes.
+
+Developmental abnormalities were not labeled as fractures.
+
+
+
+\## Summary
+
+
+
+Löffler and colleagues created a public spine CT dataset containing
+
+vertebral segmentation masks and per-vertebra fracture information. The
+
+dataset supports machine-learning systems for vertebral segmentation and
+
+fracture detection.
+
+
+
+It contains 160 CT image series from 141 patients and 1,725 fully visible
+
+vertebrae. The scans were divided into training, validation, and test
+
+groups. Scans belonging to the same patient were kept together. This is
+
+important because allowing one patient's scans in both training and
+
+testing would make performance appear better than it truly is.
+
+
+
+The masks were produced using artificial intelligence followed by human
+
+correction. A computer created an initial segmentation. Medical students
+
+corrected the result, and neuroradiologists reviewed the masks. Two
+
+radiologists then evaluated thoracolumbar vertebrae using the Genant
+
+grading method.
+
+
+
+This dataset is useful because the mask tells the program where a
+
+vertebra is, while the Genant annotation supplies the correct training
+
+answer. The program can crop an individual vertebra using its mask and
+
+pair that crop with its grade.
+
+
+
+The dataset also has limitations. It is small for a three-dimensional
+
+neural network. Grade 1 fractures are more common than severe fractures,
+
+which creates class imbalance. Patients younger than 30 and patients with
+
+bone metastases were excluded. Some scans contain contrast material even
+
+though this project's final target is non-contrast CT.
+
+
+
+This dataset is also part of VerSe 2019. VerSe 2019 and the Löffler
+
+dataset must not be counted as two completely separate groups. Patient and
+
+scan identifiers must be checked to prevent duplicate images and data
+
+leakage.
+
+
+
+\## Connection to the project
+
+
+
+This will be a primary labeled dataset for the grading model.
+
+
+
+For each vertebra, the preparation program will:
+
+
+
+1\. Read the patient and scan identifiers.
+
+2\. Read the CT volume.
+
+3\. Read the vertebral mask and anatomical name.
+
+4\. Read the Genant grade.
+
+5\. Crop the vertebra with padding.
+
+6\. Resample the crop to 64 by 64 by 64 voxels.
+
+7\. Record its grade and source in a manifest.
+
+8\. Keep the entire patient in only one data split.
+
+
+
+Non-contrast scans will be identified when possible. Contrast and
+
+non-contrast scans must not be mixed without documenting and testing the
+
+difference.
+
+
+
+\## License and provenance
+
+
+
+Dataset:
+
+Löffler Vertebral Segmentation Dataset with Fracture Grading
+
+
+
+Source:
+
+https://osf.io/nqjyw/
+
+
+
+Data license:
+
+CC BY-SA 4.0
+
+
+
+Article license:
+
+CC BY 4.0
+
+
+
+Planned use:
+
+Training and evaluating the per-vertebra Genant-grading model.
+
+
+
+The CT scans, masks, and generated crops will remain outside GitHub.
+
+GitHub will contain code, manifests, licenses, patient-level split files,
+
+and evaluation reports.
+
