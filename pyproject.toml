@@ -14,7 +14,8 @@ dependencies = [
     "numpy",
     "pandas",
     "nibabel",
-    "scipy"
+    "scipy",
+    "matplotlib"
 ]
 
 [tool.pytest.ini_options]

@@ -33,3 +33,4 @@ wandb/
 *.egg-info/
 crops/
 *.npy
+qc/
