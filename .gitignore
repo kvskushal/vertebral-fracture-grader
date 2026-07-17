@@ -28,3 +28,6 @@ wandb/
 *.ckpt
 *.pth
 *.ptoutputs/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vertebral-fracture-grader"
+version = "0.1.0"
+description = "Research pipeline for Genant grading of T4-L4 vertebrae from CT volumes."
+authors = [
+    {name = "Kushal Kilari", email = "kushal.kilari11100@gmail.com"}
+]
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "numpy"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
