@@ -740,3 +740,875 @@ GitHub will contain code, manifests, licenses, patient-level split files,
 
 and evaluation reports.
 
+
+
+
+
+
+
+
+
+\# Paper 4: Tomita Deep-Learning Fracture Detection
+
+
+
+\## Citation
+
+
+
+Tomita, N., Cheung, Y. Y., and Hassanpour, S. (2018).
+
+Deep neural networks for automatic detection of osteoporotic vertebral
+
+fractures on CT scans. Computers in Biology and Medicine, 98, 8-15.
+
+https://doi.org/10.1016/j.compbiomed.2018.05.011
+
+
+
+Paper:
+
+https://www.sciencedirect.com/science/article/abs/pii/S0010482518301185
+
+
+
+\## Research question
+
+
+
+Can a deep-learning system examine chest, abdominal, and pelvic CT scans
+
+and determine whether a patient has an osteoporotic vertebral fracture?
+
+
+
+\## Important vocabulary
+
+
+
+\- CNN: A neural network that learns visual features from images.
+
+\- RNN: A neural network designed to process an ordered sequence.
+
+\- LSTM: A type of RNN that remembers information across a sequence.
+
+\- Feature extraction: Finding useful patterns in an image.
+
+\- Feature aggregation: Combining information from multiple images.
+
+\- F1 score: A measurement balancing precision and sensitivity.
+
+\- Incidental finding: A medical problem found while examining something else.
+
+
+
+\## Method and results
+
+
+
+The system used a CNN to examine individual two-dimensional sagittal CT
+
+images. The CNN produced features describing each image. An LSTM then
+
+combined the sequence of features and predicted whether the complete CT
+
+scan contained an osteoporotic vertebral fracture.
+
+
+
+The study used:
+
+
+
+\- 1,432 CT scans
+
+\- 10,546 sagittal two-dimensional images
+
+\- A held-out test set of 129 CT scans
+
+\- Chest, abdominal, and pelvic examinations
+
+
+
+The best model achieved:
+
+
+
+\- Accuracy: 89.2%
+
+\- F1 score: 90.8%
+
+
+
+The reported performance was similar to that of practicing radiologists
+
+on the test set.
+
+
+
+\## Summary
+
+
+
+Tomita and colleagues developed an automatic system for finding
+
+osteoporotic vertebral fractures on routine CT examinations. These
+
+fractures are frequently missed because the CT may have been ordered for
+
+another medical reason and the fracture may not produce symptoms.
+
+
+
+The system used two kinds of neural networks. First, a CNN examined
+
+individual sagittal CT images and extracted visual features. Second, an
+
+LSTM combined information from the ordered sequence of images and made
+
+one prediction for the entire CT scan.
+
+
+
+This design demonstrated that deep learning could screen existing CT
+
+examinations without requiring additional imaging or radiation. A
+
+suspicious scan could be flagged for review by a radiologist.
+
+
+
+However, the model produced a patient-level binary answer: fracture
+
+present or fracture absent. It did not identify every vertebral level and
+
+did not assign individual Genant grades from 0 through 3. It was also
+
+developed using data from one medical institution, so performance at
+
+different hospitals and with different scanners was uncertain.
+
+
+
+This paper explains why some earlier systems used an RNN. They processed
+
+an ordered sequence of two-dimensional images. The current project will
+
+instead process one three-dimensional vertebral crop at a time. Therefore,
+
+a three-dimensional CNN is more appropriate than an RNN for the grading
+
+model.
+
+
+
+\## Connection to this project
+
+
+
+Tomita supports the idea that deep learning can detect fractures on CT.
+
+However, this project needs a more detailed output.
+
+
+
+Tomita output:
+
+
+
+One CT scan -> fracture present or absent
+
+
+
+This project output:
+
+
+
+Each T4-L4 vertebra -> Genant grade 0, 1, 2, or 3
+
+
+
+The project will use a three-dimensional CNN on individual vertebral crops.
+
+It will not use an RNN as its main classifier.
+
+
+
+
+
+\# Paper 5: Nicolaes Three-Dimensional CNN
+
+
+
+\## Citation
+
+
+
+Nicolaes, J., Raeymaeckers, S., Robben, D., Wilms, G.,
+
+Vandermeulen, D., Libanati, C., and Debois, M. (2020).
+
+Detection of vertebral fractures in CT using 3D convolutional neural
+
+networks. In Computational Methods and Clinical Applications for Spine
+
+Imaging, Lecture Notes in Computer Science, 11963, 3-14.
+
+https://doi.org/10.1007/978-3-030-39752-4\_1
+
+
+
+Free preprint:
+
+https://arxiv.org/abs/1911.01816
+
+
+
+\## Research question
+
+
+
+Can a three-dimensional CNN learn the spatial appearance of vertebral
+
+fractures directly from CT volumes?
+
+
+
+\## Important vocabulary
+
+
+
+\- 3D CNN: A CNN that examines width, height, and depth.
+
+\- Spatial information: Information about three-dimensional shape and position.
+
+\- Voxel classification: Predicting a label for locations in a 3D image.
+
+\- Cross-validation: Repeating training and testing with different data portions.
+
+\- AUC: A measurement of how well a model separates positive and negative cases.
+
+\- Opportunistic screening: Checking an existing scan for an additional disease.
+
+
+
+\## Method and results
+
+
+
+The researchers trained a three-dimensional CNN using 90 CT cases. The
+
+training data were created semi-automatically using information available
+
+in radiology reports.
+
+
+
+The system learned three-dimensional feature maps and localized possible
+
+fractures. In five-fold cross-validation, it achieved:
+
+
+
+\- Patient-level AUC: 0.95
+
+\- Vertebra-level AUC: 0.93
+
+
+
+\## Summary
+
+
+
+Nicolaes and colleagues created a system that detected vertebral fractures
+
+using three-dimensional CT information. Earlier systems often used flat
+
+sagittal images or several nearby slices. This method allowed the network
+
+to learn the complete three-dimensional appearance of a fracture.
+
+
+
+Three-dimensional information is valuable because vertebrae are solid
+
+objects. A fracture can change the front, middle, back, sides, and internal
+
+structure of a vertebral body. A flat image may not show every important
+
+change.
+
+
+
+The model also localized its predictions. This is useful because a
+
+radiologist needs to know which vertebra caused the positive result.
+
+Localization makes the output more understandable than a single unexplained
+
+patient-level answer.
+
+
+
+The method was evaluated using five-fold cross-validation. It produced an
+
+AUC of 0.95 for patient-level detection and 0.93 for vertebra-level
+
+detection. These results showed that learned three-dimensional features
+
+could successfully detect vertebral fractures.
+
+
+
+The study also had limitations. Only 90 cases were available, which is
+
+small for deep learning. Cross-validation reuses the same overall dataset
+
+across different folds, so it is not as strong as testing once on a large
+
+independent hospital dataset. The main task was fracture detection rather
+
+than complete Genant grading.
+
+
+
+\## Connection to this project
+
+
+
+This paper supports the decision to use a three-dimensional CNN.
+
+
+
+The project will use:
+
+
+
+\- One vertebral crop at a time
+
+\- A single CT channel
+
+\- A tensor shaped \[batch, 1, 64, 64, 64]
+
+\- A 3D ResNet-18 or a MONAI three-dimensional DenseNet
+
+\- Four ordered Genant grades
+
+
+
+The project must use a held-out patient test set in addition to any
+
+cross-validation. No patient may appear in more than one split.
+
+
+
+
+
+\# Paper 6: Husseini Grading Loss
+
+
+
+\## Citation
+
+
+
+Husseini, M., Sekuboyina, A., Löffler, M., Navarro, F.,
+
+Menze, B. H., and Kirschke, J. S. (2020).
+
+Grading Loss: A fracture grade-based metric loss for vertebral fracture
+
+detection. In Medical Image Computing and Computer Assisted Intervention,
+
+MICCAI 2020, Lecture Notes in Computer Science, 12265, 733-742.
+
+https://doi.org/10.1007/978-3-030-59725-2\_71
+
+
+
+Free preprint:
+
+https://arxiv.org/abs/2008.07831
+
+
+
+\## Research question
+
+
+
+Can a training loss improve fracture detection by teaching a model that
+
+Genant grades have a meaningful order?
+
+
+
+\## Important vocabulary
+
+
+
+\- Loss function: A number showing how wrong the model is during training.
+
+\- Ordinal: Categories that have a meaningful order.
+
+\- Metric learning: Learning a feature space where similar examples are close.
+
+\- Latent representation: The internal features learned by a neural network.
+
+\- Class imbalance: Some classes occur much more frequently than others.
+
+\- Naive classifier: A basic model that does not use important problem structure.
+
+
+
+\## Why regular classification is insufficient
+
+
+
+Genant grades have this order:
+
+
+
+0 -> 1 -> 2 -> 3
+
+
+
+A regular four-class cross-entropy loss treats every incorrect category as
+
+simply wrong. It does not fully represent the difference between nearby
+
+and distant mistakes.
+
+
+
+For a true grade 3 vertebra:
+
+
+
+\- Predicting grade 2 is a one-grade error.
+
+\- Predicting grade 0 is a three-grade error.
+
+
+
+The second error is much more serious and should usually receive a larger
+
+penalty.
+
+
+
+\## Method and results
+
+
+
+The authors proposed Grading Loss to make the model's learned
+
+representations respect the order of the Genant grades. Vertebrae with
+
+similar grades should have more similar representations, while vertebrae
+
+with very different grades should be separated more strongly.
+
+
+
+The paper identified three major difficulties:
+
+
+
+1\. Too few labeled examples
+
+2\. Severe class imbalance
+
+3\. Small visual differences between healthy and mildly fractured vertebrae
+
+
+
+The proposed method achieved a fracture-detection F1 score of 81.5%. The
+
+authors reported an improvement of approximately 10% over a naive
+
+classification baseline.
+
+
+
+\## Summary
+
+
+
+Husseini and colleagues focused on how a fracture model should learn from
+
+ordered labels. Genant grades are not unrelated names. They describe a
+
+progression from normal to severe collapse.
+
+
+
+A standard classifier can learn four outputs, but it does not necessarily
+
+organize its internal features according to fracture severity. Grading
+
+Loss encourages the learned feature representation to preserve the order
+
+of the grades.
+
+
+
+This matters most for difficult cases. A healthy vertebra and a mild
+
+grade-1 fracture may look very similar. Grades 2 and 3 usually show more
+
+obvious collapse. The loss function should help the model learn both the
+
+difference between normal and fractured vertebrae and the progression of
+
+fracture severity.
+
+
+
+The reported F1 improvement demonstrates that including medical grading
+
+structure can outperform a naive classifier. However, the method does not
+
+eliminate the need for class balancing, careful patient splits, or
+
+independent testing.
+
+
+
+\## Connection to this project
+
+
+
+The final model should use an ordinal-aware approach. Possible choices are:
+
+
+
+1\. Reproduce Grading Loss.
+
+2\. Use CORAL ordinal regression.
+
+3\. Use CORN ordinal regression.
+
+
+
+The first baseline will still use ordinary cross-entropy so that the
+
+ordinal model can be compared against it.
+
+
+
+The project will report:
+
+
+
+\- Exact four-grade accuracy
+
+\- Quadratic-weighted Cohen's kappa
+
+\- Four-by-four confusion matrix
+
+\- Binary fracture sensitivity and specificity
+
+\- Grade 2-or-higher sensitivity
+
+
+
+Quadratic-weighted kappa is important because it penalizes large grading
+
+errors more than small grading errors.
+
+
+
+
+
+\# Paper 7: Bar and Burns Automated Detection Pipelines
+
+
+
+\## Bar citation
+
+
+
+Bar, A., Wolf, L., Bergman Amitai, O., Toledano, E., and Elnekave, E.
+
+(2017). Compression Fractures Detection on CT.
+
+Medical Imaging 2017: Computer-Aided Diagnosis, Proceedings of SPIE,
+
+10134, 1013440.
+
+https://doi.org/10.1117/12.2249635
+
+
+
+Free preprint:
+
+https://arxiv.org/abs/1706.01671
+
+
+
+\## Burns citation
+
+
+
+Burns, J. E., Yao, J., and Summers, R. M. (2017).
+
+Vertebral Body Compression Fractures and Bone Density:
+
+Automated Detection and Classification on CT Images.
+
+Radiology, 284(3), 788-797.
+
+https://doi.org/10.1148/radiol.2017162100
+
+
+
+Paper:
+
+https://pubs.rsna.org/doi/10.1148/radiol.2017162100
+
+
+
+\## Research question
+
+
+
+How can a complete automated pipeline find the spine, detect compression
+
+fractures, and produce clinically useful information?
+
+
+
+\## Bar pipeline
+
+
+
+The Bar system contained three major processes:
+
+
+
+1\. Segment the spinal column.
+
+2\. Extract sagittal patches and classify them with a CNN.
+
+3\. Use an RNN to combine the patch predictions into a scan-level answer.
+
+
+
+The CNN examined the visual appearance of individual patches. The RNN
+
+used the order of the patch predictions to decide whether the scan
+
+contained a compression fracture.
+
+
+
+This was an important early example of a multistage deep-learning
+
+pipeline. However, it mainly produced a binary patient-level prediction.
+
+It did not produce a Genant grade for every vertebra.
+
+
+
+\## Burns pipeline
+
+
+
+The Burns study used CT scans from 150 patients:
+
+
+
+\- 75 patients with compression fractures
+
+\- 75 matched patients without compression fractures
+
+\- 210 fractured thoracic or lumbar vertebrae
+
+
+
+The automated system segmented the spine, detected fractures, localized
+
+them anatomically, classified the fracture type and grade, and measured
+
+bone density.
+
+
+
+Reported results included:
+
+
+
+\- Fracture-detection sensitivity: 95.7%
+
+\- False-positive rate: 0.29 per patient
+
+\- Case-level sensitivity: 98.7%
+
+\- Case-level specificity: 77.3%
+
+\- Fracture-type accuracy: 0.95
+
+\- Weighted kappa for fracture type: 0.90
+
+\- Height-loss grade accuracy: 0.68
+
+\- Weighted kappa for height-loss grade: 0.59
+
+
+
+\## Summary
+
+
+
+Bar and Burns demonstrated complete pipelines rather than isolated
+
+classifiers. Both systems first reduced the large CT scan to a smaller
+
+spine region before analyzing fractures.
+
+
+
+Bar used a CNN to classify sagittal patches and an RNN to combine the
+
+ordered patch predictions. This design was useful for producing one answer
+
+for the entire scan. However, a patient-level result does not provide the
+
+vertebral name or fracture grade required by the current project.
+
+
+
+Burns developed a system that performed more detailed analysis. It
+
+detected and localized compression fractures, classified fracture type,
+
+estimated Genant height-loss grade, and measured vertebral bone density.
+
+The system achieved high fracture-detection sensitivity with a relatively
+
+low false-positive rate.
+
+
+
+An important result was that fracture detection was easier than accurate
+
+severity grading. The system detected fractures with high sensitivity,
+
+but its exact height-loss grade accuracy was 0.68 and weighted kappa was
+
+0.59. This difference shows why the current project must evaluate grading
+
+separately from binary fracture detection.
+
+
+
+The Burns method also provides a useful morphometric baseline. A
+
+segmentation can be used to estimate anterior, middle, and posterior
+
+vertebral heights. The height-loss ratios can then be converted into
+
+Genant grades without a grading CNN.
+
+
+
+\## Connection to this project
+
+
+
+The project follows the multistage lesson from these pipelines:
+
+
+
+1\. Locate and label each vertebra.
+
+2\. Create a vertebral mask.
+
+3\. Crop the vertebral body.
+
+4\. Predict the Genant grade.
+
+5\. Return the vertebral name, grade, and confidence.
+
+
+
+The project will implement two grading methods:
+
+
+
+\### Morphometric baseline
+
+
+
+Estimate anterior, middle, and posterior height from the mask. Convert
+
+height loss into grades using the Genant thresholds.
+
+
+
+\### Three-dimensional CNN
+
+
+
+Use the complete 64 by 64 by 64 vertebral crop to predict the grade.
+
+
+
+The CNN must be compared with the morphometric baseline. This comparison
+
+will show whether the neural network learns useful fracture information
+
+beyond simple height measurements.
+
+
+
+\## Combined lessons from all reviewed papers
+
+
+
+The literature supports the following design:
+
+
+
+1\. Genant defines the four ordered grades.
+
+2\. VerSe supports localization, labeling, and segmentation.
+
+3\. Löffler supplies segmentation masks and fracture grades.
+
+4\. Tomita shows that deep learning can screen routine CT scans.
+
+5\. Nicolaes shows the value of three-dimensional features.
+
+6\. Husseini shows why ordinal-aware training is important.
+
+7\. Bar and Burns demonstrate complete automated pipelines.
+
+8\. Burns shows that exact grading is harder than binary detection.
+
+
+
+The proposed system will therefore use a two-stage pipeline:
+
+
+
+Stage A:
+
+TotalSegmentator produces labeled vertebral masks.
+
+
+
+Stage B:
+
+A three-dimensional CNN predicts an ordered Genant grade for each
+
+vertebral crop.
+
+
+
+The main grading metric will be quadratic-weighted Cohen's kappa.
+
+Binary fracture detection and grade 2-or-higher sensitivity will also be
+
+reported. All dataset splits will be created at the patient level.
+
