@@ -1,13 +1,34 @@
 {
-    "hu_clip_min": -200.0,
-    "hu_clip_max": 1000.0,
-    "normalized_min": 0.0,
-    "normalized_max": 1.0,
-    "crop_shape": [64, 64, 64],
-    "input_channels": 1,
-    "grades": [0, 1, 2, 3],
-    "vertebrae": [
-        "T4", "T5", "T6", "T7", "T8", "T9",
-        "T10", "T11", "T12", "L1", "L2", "L3", "L4"
-    ]
+    "hu_clip_min":  -200.0,
+    "hu_clip_max":  1000.0,
+    "normalized_min":  0.0,
+    "normalized_max":  1.0,
+    "crop_shape":  [
+                       64,
+                       64,
+                       64
+                   ],
+    "input_channels":  1,
+    "grades":  [
+                   0,
+                   1,
+                   2,
+                   3
+               ],
+    "vertebrae":  [
+                      "T4",
+                      "T5",
+                      "T6",
+                      "T7",
+                      "T8",
+                      "T9",
+                      "T10",
+                      "T11",
+                      "T12",
+                      "L1",
+                      "L2",
+                      "L3",
+                      "L4"
+                  ],
+    "crop_padding_mm":  10
 }

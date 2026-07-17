@@ -1,0 +1,32 @@
+{
+    "verse_multilabel": {
+        "T4": 11,
+        "T5": 12,
+        "T6": 13,
+        "T7": 14,
+        "T8": 15,
+        "T9": 16,
+        "T10": 17,
+        "T11": 18,
+        "T12": 19,
+        "L1": 20,
+        "L2": 21,
+        "L3": 22,
+        "L4": 23
+    },
+    "totalsegmentator_binary_files": {
+        "T4": "vertebrae_T4.nii.gz",
+        "T5": "vertebrae_T5.nii.gz",
+        "T6": "vertebrae_T6.nii.gz",
+        "T7": "vertebrae_T7.nii.gz",
+        "T8": "vertebrae_T8.nii.gz",
+        "T9": "vertebrae_T9.nii.gz",
+        "T10": "vertebrae_T10.nii.gz",
+        "T11": "vertebrae_T11.nii.gz",
+        "T12": "vertebrae_T12.nii.gz",
+        "L1": "vertebrae_L1.nii.gz",
+        "L2": "vertebrae_L2.nii.gz",
+        "L3": "vertebrae_L3.nii.gz",
+        "L4": "vertebrae_L4.nii.gz"
+    }
+}
