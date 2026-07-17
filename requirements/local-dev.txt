@@ -1,0 +1,9 @@
+numpy
+pandas
+scikit-learn
+nibabel
+pydicom
+matplotlib
+seaborn
+pytest
+ruff

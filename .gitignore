@@ -27,4 +27,4 @@ wandb/
 # Temporary model files
 *.ckpt
 *.pth
-*.pt
+*.ptoutputs/
