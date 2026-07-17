@@ -1,0 +1,55 @@
+{
+    "schema_version": 1,
+    "datasets": [
+        {
+            "id": "verse19_loeffler",
+            "name": "VerSe 2019 / Loffler fracture-grading dataset",
+            "official_url": "https://osf.io/nqjyw/",
+            "reference_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8082364/",
+            "license": "CC BY-SA 4.0",
+            "roles": ["primary_grading", "localization"],
+            "has_genant_grades": true,
+            "download_policy": "colab_only",
+            "access_status": "not_downloaded",
+            "priority": 1,
+            "notes": "Same underlying OSF project as VerSe 2019; do not double-count."
+        },
+        {
+            "id": "xvertseg_v1",
+            "name": "xVertSeg v1",
+            "official_url": "https://lit.fe.uni-lj.si/en/research/resources/xVertSeg/",
+            "license": "CC BY-NC-ND",
+            "roles": ["supplemental_grading"],
+            "has_genant_grades": true,
+            "download_policy": "colab_only",
+            "access_status": "not_downloaded",
+            "priority": 2,
+            "notes": "Five-part archive; verify exact cases and grade format after download."
+        },
+        {
+            "id": "verse20",
+            "name": "VerSe 2020",
+            "official_url": "https://osf.io/t98fz/",
+            "reference_url": "https://github.com/anjany/verse",
+            "license": "CC BY-SA 4.0",
+            "roles": ["optional_localization"],
+            "has_genant_grades": false,
+            "download_policy": "colab_only",
+            "access_status": "deferred",
+            "priority": 3,
+            "notes": "Use for localization robustness only."
+        },
+        {
+            "id": "ctspine1k",
+            "name": "CTSpine1K",
+            "official_url": "https://github.com/MIRACLE-Center/CTSpine1K",
+            "license": "CC BY-NC-SA 4.0",
+            "roles": ["optional_localization"],
+            "has_genant_grades": false,
+            "download_policy": "colab_only",
+            "access_status": "deferred",
+            "priority": 4,
+            "notes": "Large segmentation dataset; delay until the core pipeline works."
+        }
+    ]
+}
