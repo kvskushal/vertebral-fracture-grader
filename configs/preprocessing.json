@@ -30,5 +30,6 @@
                       "L3",
                       "L4"
                   ],
-    "crop_padding_mm":  10
+    "crop_padding_mm":  10,
+    "preprocessing_version":  "v1_hu-200_1000_crop64_pad10mm"
 }
