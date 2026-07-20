@@ -27,7 +27,8 @@ wandb/
 # Temporary model files
 *.ckpt
 *.pth
-*.ptoutputs/
+*.pt
+outputs/
 .pytest_cache/
 .ruff_cache/
 *.egg-info/

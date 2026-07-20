@@ -17,6 +17,24 @@ from data_prep.preprocessing import CONFIG
 LABEL_PATH: Final = Path(__file__).resolve().parents[1] / "configs" / "vertebra_labels.json"
 SAFE_ID: Final = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 
+MANIFEST_COLUMNS: Final = [
+    "patient_id",
+    "scan_id",
+    "vertebra",
+    "genant_grade",
+    "crop_path",
+    "source_dataset",
+    "split",
+    "preprocessing_version",
+    "source_license",
+]
+REJECTION_COLUMNS: Final = [
+    "patient_id",
+    "scan_id",
+    "vertebra",
+    "reason",
+]
+
 
 def process_verse_scan(
     ct_path: str | Path,
@@ -86,4 +104,10 @@ def process_verse_scan(
             }
         )
 
-    return pd.DataFrame(manifest_rows), pd.DataFrame(rejection_rows)
+    # Build with explicit columns so an empty result (no valid vertebrae, or
+    # no rejections) still has the correct schema instead of a column-less
+    # DataFrame that breaks downstream validation and concatenation.
+    manifest = pd.DataFrame(manifest_rows, columns=MANIFEST_COLUMNS)
+    rejections = pd.DataFrame(rejection_rows, columns=REJECTION_COLUMNS)
+
+    return manifest, rejections
