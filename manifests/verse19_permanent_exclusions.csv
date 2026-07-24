@@ -1,0 +1,6 @@
+split,subject,reason,detail
+train,sub-verse102,recovered_on_retry,4 vertebrae
+train,sub-verse076,PERMANENT_no_ct_available_on_osf,subject has derivatives/mask but no rawdata/CT folder
+train,sub-verse133,PERMANENT_no_ct_available_on_osf,subject has derivatives/mask but no rawdata/CT folder
+train,sub-verse008,PERMANENT_no_mask_available_on_osf,subject has rawdata/CT but no derivatives/mask folder
+train,sub-verse072,PERMANENT_no_mask_available_on_osf,subject has rawdata/CT but no derivatives/mask folder
